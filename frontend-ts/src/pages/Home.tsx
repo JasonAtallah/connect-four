@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 
 interface Props {
   joinGame: (id: string) => Promise<void>;
@@ -8,11 +8,6 @@ interface Props {
 export default function Home({ joinGame, newGame }: Props) {
   const [id, setId] = useState("");
 
-  const _joinGame = (e: SyntheticEvent) => {
-    e.preventDefault();
-    joinGame(id);
-  };
-
   return (
     <div>
       <h1>Connect Four</h1>
@@ -21,10 +16,15 @@ export default function Home({ joinGame, newGame }: Props) {
 
       <h4>---Or---</h4>
 
-      <form onSubmit={_joinGame}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          joinGame(id);
+        }}
+      >
         <h2>Join a game</h2>
         <label>
-          Match Id:
+          Game Id:
           <input type="text" onChange={(e) => setId(e.target.value)} />
         </label>
         <input disabled={!id.trim()} type="submit" value="Submit" />

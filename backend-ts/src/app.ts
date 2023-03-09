@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 import { validateReqVar } from "./middleware";
 import { z } from "zod";
 import db, { moveSchema } from "./db";
@@ -10,7 +9,6 @@ const idParamSchema = z.object({ id: z.string() });
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
 
 app.get(
   "/game/:id",
@@ -33,12 +31,11 @@ app.post("/new-game", (_: Request, res: Response) => {
 });
 
 app.put(
-  "/reset-game/:id",
+  "/game/:id/reset",
   validateReqVar(idParamSchema, "params"),
   (req: Request, res: Response) => {
     const { id } = req.params;
-    db.resetGame(id);
-    const game = db.getGame(id);
+    const game = db.resetGame(id);
     res.json(game);
   }
 );
