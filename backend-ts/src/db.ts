@@ -42,6 +42,7 @@ export default {
 
     const numRedMoves = board.filter((i) => i.player === "red").length;
     const numBlueMoves = board.filter((i) => i.player === "blue").length;
+    // This assumes Red always goes first
     const playersTurn = numRedMoves === numBlueMoves ? "red" : "blue";
     if (move.player !== playersTurn) throw new Error("It is not your turn");
 

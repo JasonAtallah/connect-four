@@ -29,7 +29,6 @@ app.get("/games", (_req: Request, res: Response) => {
 
 app.post("/new-game", (_: Request, res: Response) => {
   const game = db.createGame();
-  console.log(db.getAllGames());
   return res.json(game);
 });
 
