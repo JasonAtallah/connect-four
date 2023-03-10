@@ -17,7 +17,7 @@ export default function App() {
       const game = await getGame(curGame.id);
       setCurGame(game);
     }
-  }, 2000);
+  }, 500);
 
   const clear = () => {
     setCurGame(undefined);

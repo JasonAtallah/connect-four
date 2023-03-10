@@ -24,7 +24,7 @@ export default function Home({ joinGame, newGame }: Props) {
       >
         <h2>Join a game</h2>
         <label>
-          Game Id:
+          <span>Game Id: </span>
           <input type="text" onChange={(e) => setId(e.target.value)} />
         </label>
         <input disabled={!id.trim()} type="submit" value="Submit" />
